@@ -22,7 +22,7 @@ class TrajectoryGeneration{
 
     public:
 
-    TrajectoryGeneration(KinematicConstraints constraints);
+    TrajectoryGeneration(KinematicConstraints constraints, double trackWidth);
 
     wpi::InterpolatingMap<double, double> generateTrajectory(Vector2D istart, Vector2D iend);
 

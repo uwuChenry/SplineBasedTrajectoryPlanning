@@ -5,14 +5,11 @@ double CubicBezier::getLength(int step){
     double out;
     double deltaStep = 1.0 / step;
     
-    std::cout<<"ahahaha";
-    std::cout<< deltaStep;
     for (double i = 0; i < 1; i = (i + deltaStep))
     {
         out += Point2D::distanceBetween(getPoint(i), getPoint(i + deltaStep));
     }
-    std::cout<<"ahahaha";
-    
+    //std::cout << "get length length" << out;
     return out;
 }
 DescretePath CubicBezier::generatePathByStep(int step){
@@ -48,7 +45,7 @@ DescretePath CubicBezier::generatePathByLength(int length, int initDistStep, int
     {
         out.pushBack(getPoint(1));
     }
-    std::cout << "finish gen by length";
+    std::cout << "finish gen by length \n";
     return out;
 }
 Point2D CubicBezier::getPoint(double t) const{
