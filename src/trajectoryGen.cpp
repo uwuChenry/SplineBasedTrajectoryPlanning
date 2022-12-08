@@ -10,15 +10,16 @@ wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(V
 {
     
     //CubicBezier bezierPath(istart, iend);
-    bezier.setPoints(istart, iend);
+    //bezier.setPoints(istart, iend);
+    CubicBezier bezier (istart, iend);
     DescretePath path = bezier.generatePathByLength(0.03);
-    bezier.getC1().printXandY();
-    bezier.getC2().printXandY();
+    //thing.getC1().printXandY();
+    //thing.getC2().printXandY();
     //std::cout<< bezierPath.getLength() << "length bezier \n";
-    //std::cout<< bezierPath.length << "length length \n";
+    //std::cout<< thing.getLength() << "length length \n";
     //CubicBezier thing2 ({0, 0, 0, 0.5}, {2, 2, 0, 0.5});
 
-    std::cout<<bezier.getLength()<<"lenght from bezier \n";
+    //std::cout<<bezier.getLength()<<"lenght from bezier \n";
     //std::cout<< thing2.getPoint(1).getX() << "thing point 1";
     //double thinglength = thing2.getLength();
     //std::cout << thinglength << "thing length \n";
@@ -82,6 +83,11 @@ wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(V
     finalTime = trajProfile.back().time;
     std::cout << trajProfile.back().time << std::endl;
     std::cout << "finished genTraj" <<std::endl;
+    for (size_t i = 0; i < trajProfile.size(); i++)
+    {
+        //std::cout<< trajProfile[i].position << "pos\n";
+    }
+    
     return out;
 }
 
@@ -104,6 +110,8 @@ void TrajectoryGeneration::imposeLimits(DescretePath &path)
         trajProfile.push_back(placeholder);
     }
 }
+
+
 
 void TrajectoryGeneration::printTrajectoryProfile(TrajectoryGetMode igetStuffMode)
 {

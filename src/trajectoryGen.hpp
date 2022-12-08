@@ -17,7 +17,6 @@ class TrajectoryGeneration{
     double finalTime;  
 
     DescretePath path;
-    CubicBezier bezier;
     std::vector<Trajectory> trajProfile;
     std::vector<std::pair<Trajectory, Trajectory>> generatedPath;
 
@@ -30,6 +29,8 @@ class TrajectoryGeneration{
     double getFinalTime();
 
     void imposeLimits(DescretePath& path);
+
+    void imposeLimits2(DescretePath &path);
     
     void printTrajectoryProfile(TrajectoryGetMode igetStuffMode);
     

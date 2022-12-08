@@ -33,7 +33,7 @@ class CubicBezier
     void setPoints(Vector2D start, Vector2D end);
     double getLength(int step = 250);
     DescretePath generatePathByStep (int step = 500);
-    DescretePath generatePathByLength (int length, int initDistStep = 250, int traverseStep = 1000, bool end = true);
+    DescretePath generatePathByLength (double length, int initDistStep = 250, int traverseStep = 1000, bool end = true);
 
     Point2D getPoint(double t) const;
     Point2D getVelocity(double t) const;

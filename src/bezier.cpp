@@ -36,21 +36,24 @@ DescretePath CubicBezier::generatePathByStep(int step){
     }
     return out;
 }
-DescretePath CubicBezier::generatePathByLength(int length, int initDistStep, int traverseStep, bool end){
+DescretePath CubicBezier::generatePathByLength(double length, int initDistStep, int traverseStep, bool end){
     double totalDist = getLength(initDistStep);
     double distPerSegment = totalDist / std::ceil(totalDist / length);
+    //std::cout << length << "length \n";
+    //std::cout << totalDist << "totaldist \n" << std::ceil(totalDist / length) << "celi \n";
+    //std::cout << distPerSegment << "distpersegment \n";
     double traversed = 0;
     DescretePath out;
     out.setDeltaLength(length);
     out.setDistance(totalDist);
     out.pushBack(getPoint(0));
-    for (size_t t = 0; t < 1000; t++)
-    {
-        traversed += getPoint(t / 1000).distanceTo(getPoint(t / 1000 + 1 / 1000));
+
+    for (double t = 0; t < 1000; t++){
+        traversed += getPoint(t / 1000.0).distanceTo(getPoint(t / 1000.0 + 0.001));
         if (traversed >= distPerSegment)
         {
             traversed = 0;
-            out.pushBack(getPoint(t / 1000));
+            out.pushBack(getPoint(t / 1000.0));
         }
     }
     if (out.back().distanceTo(getPoint(1)) < distPerSegment / 2)
@@ -62,6 +65,7 @@ DescretePath CubicBezier::generatePathByLength(int length, int initDistStep, int
         out.pushBack(getPoint(1));
     }
     std::cout << "finish gen by length \n";
+    std::cout << out.getSize() << "out size \n";
     return out;
 }
 Point2D CubicBezier::getPoint(double t) const{

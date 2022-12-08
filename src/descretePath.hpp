@@ -7,7 +7,7 @@
 
 
 class DescretePath{
-    std::vector<Point2D> path;
+    std::vector<Point2D> path = {};
     double deltaLength;
     double distance;
     
