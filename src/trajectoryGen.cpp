@@ -8,11 +8,22 @@ TrajectoryGeneration::TrajectoryGeneration(KinematicConstraints constraints, dou
 
 wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(Vector2D istart, Vector2D iend)
 {
-    CubicBezier bezierPath(istart, iend);
-    DescretePath path = bezierPath.generatePathByLength(0.03);
-    std::cout<< bezierPath.getLength() << "length bezier \n";
+    
+    //CubicBezier bezierPath(istart, iend);
+    bezier.setPoints(istart, iend);
+    DescretePath path = bezier.generatePathByLength(0.03);
+    bezier.getC1().printXandY();
+    bezier.getC2().printXandY();
+    //std::cout<< bezierPath.getLength() << "length bezier \n";
+    //std::cout<< bezierPath.length << "length length \n";
+    //CubicBezier thing2 ({0, 0, 0, 0.5}, {2, 2, 0, 0.5});
+
+    std::cout<<bezier.getLength()<<"lenght from bezier \n";
+    //std::cout<< thing2.getPoint(1).getX() << "thing point 1";
+    //double thinglength = thing2.getLength();
+    //std::cout << thinglength << "thing length \n";
     path.setDeltaLength(0.03);
-    std::cout<<path.getSize() << "size path";
+    //std::cout<<path.getSize() << "size path";
     imposeLimits(path);
     trajProfile[0].vel = 0;
     trajProfile.back().vel = 0;

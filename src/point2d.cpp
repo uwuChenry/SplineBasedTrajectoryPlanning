@@ -1,12 +1,21 @@
 #include "point2D.hpp"
 #include <cmath>
 #include <iostream>
+#include <string.h>
 
 
 Point2D::Point2D(double ix, double iy)
 {
     this->x = ix;
     this->y = iy;
+}
+
+double Point2D::getX(){
+    return this->x;
+}
+
+double Point2D::getY(){
+    return this->y;
 }
 
 
@@ -64,4 +73,8 @@ Point2D Point2D::operator*(double scalar) const
 Point2D Point2D::operator/(double scalar) const
 {
     return {x / scalar, y / scalar};
+}
+
+void Point2D::printXandY(){
+    std::cout << "x: " << this->x << " y: " << this->y << std::endl;
 }

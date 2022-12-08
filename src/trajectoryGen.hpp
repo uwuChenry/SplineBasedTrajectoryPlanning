@@ -17,6 +17,7 @@ class TrajectoryGeneration{
     double finalTime;  
 
     DescretePath path;
+    CubicBezier bezier;
     std::vector<Trajectory> trajProfile;
     std::vector<std::pair<Trajectory, Trajectory>> generatedPath;
 

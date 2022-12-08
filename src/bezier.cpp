@@ -12,6 +12,22 @@ double CubicBezier::getLength(int step){
     //std::cout << "get length length" << out;
     return out;
 }
+
+void CubicBezier::setPoints(Point2D start, Point2D control1, Point2D control2, Point2D end){
+    this->p1 = start;
+    this->c1 = control1;
+    this->c2 = control2;
+    this->p2 = end;
+}
+void CubicBezier::setPoints(Vector2D start, Vector2D end){
+    end.addAngle(180);
+    this->p1 = start.getPoint();
+    this->p2 = end.getPoint();
+    this->c1 = start.getSecondPoint();
+    this->c2 = end.getSecondPoint();
+    //setPoints(start.getPoint(), start.getSecondPoint(), end.getSecondPoint(), end.getPoint());
+}
+
 DescretePath CubicBezier::generatePathByStep(int step){
     DescretePath out;
     for (size_t i = 0; i < 1; i += 1 / step)
@@ -58,4 +74,17 @@ Point2D CubicBezier::getVelocity(double t) const{
 
 Point2D CubicBezier::getAcceleration(double t) const{
     return p1 * (-6 * t + 6) + c1 * (18 * t - 12) + c2 * (-18 * t + 6) + p2 * (6 * t);
+}
+
+Point2D CubicBezier::getP1(){
+    return this->p1;
+}
+Point2D CubicBezier::getP2(){
+    return this->p2;
+}
+Point2D CubicBezier::getC1(){
+    return this->c1;
+}
+Point2D CubicBezier::getC2(){
+    return this->c2;
 }

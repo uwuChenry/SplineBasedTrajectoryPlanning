@@ -9,11 +9,16 @@ class Point2D
     public:
     Point2D() = default;
     Point2D(double ix, double iy);
+    
 
     Point2D operator+(const Point2D &rhs);
     Point2D operator-(const Point2D &rhs);
     Point2D operator*(double scalar) const;
     Point2D operator/(double scalar) const;
+
+    double getX();
+    double getY();
+    void printXandY();
 
 
     
