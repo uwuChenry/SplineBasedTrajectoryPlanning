@@ -1,5 +1,11 @@
 #pragma once
+#include "descretePath.hpp"
 
+
+struct MotionProfilePath{
+    DescretePath path;
+    double deltaDistance = 0;
+}; 
 
 struct Trajectory{
     double vel;

@@ -8,32 +8,15 @@ TrajectoryGeneration::TrajectoryGeneration(KinematicConstraints constraints, dou
 
 wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(Vector2D istart, Vector2D iend)
 {
-    
-    //CubicBezier bezierPath(istart, iend);
-    //bezier.setPoints(istart, iend);
     CubicBezier bezier (istart, iend);
-    DescretePath path = bezier.generatePathByLength(0.03);
-    //thing.getC1().printXandY();
-    //thing.getC2().printXandY();
-    //std::cout<< bezierPath.getLength() << "length bezier \n";
-    //std::cout<< thing.getLength() << "length length \n";
-    //CubicBezier thing2 ({0, 0, 0, 0.5}, {2, 2, 0, 0.5});
+    std::cout<<bezier.getLength(1000)<<" bezier length from gen traj\n";
+    DescretePath path = bezier.generatePathByLength(0.005);
 
-    //std::cout<<bezier.getLength()<<"lenght from bezier \n";
-    //std::cout<< thing2.getPoint(1).getX() << "thing point 1";
-    //double thinglength = thing2.getLength();
-    //std::cout << thinglength << "thing length \n";
-    path.setDeltaLength(0.03);
-    //std::cout<<path.getSize() << "size path";
+    path.setDeltaLength(path.getDeltaLength());
     imposeLimits(path);
     trajProfile[0].vel = 0;
     trajProfile.back().vel = 0;
     trajProfile[0].time = 0;
-
-    /*for (auto &thing : trajProfile)
-    {
-        std::cout << thing.vel << std::endl;
-    }*/
     
     std::cout << "gonig into gen traj \n";
     //std::cout << trajProfile[0].vel;
@@ -81,12 +64,12 @@ wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(V
         out.insert(trajProfile[i].time, trajProfile[i].vel);
     }
     finalTime = trajProfile.back().time;
-    std::cout << trajProfile.back().time << std::endl;
+    std::cout << trajProfile.back().time << " final time \n";
     std::cout << "finished genTraj" <<std::endl;
-    for (size_t i = 0; i < trajProfile.size(); i++)
+    /*for (size_t i = 0; i < trajProfile.size(); i++)
     {
-        //std::cout<< trajProfile[i].position << "pos\n";
-    }
+        std::cout<< trajProfile[i].position << " pos     ";
+    }*/
     
     return out;
 }
@@ -109,6 +92,7 @@ void TrajectoryGeneration::imposeLimits(DescretePath &path)
         placeholder.vel = maxAllowableVel;
         trajProfile.push_back(placeholder);
     }
+    std::cout << trajProfile.size() << "trajprofile size";
 }
 
 
