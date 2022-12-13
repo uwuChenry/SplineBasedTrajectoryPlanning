@@ -10,7 +10,7 @@ wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(V
 {
     CubicBezier bezier (istart, iend);
     std::cout<<bezier.getLength(1000)<<" bezier length from gen traj\n";
-    DescretePath path = bezier.generatePathByLength(0.005);
+    DescretePath path = bezier.generatePathByLength(0.01);
 
     path.setDeltaLength(path.getDeltaLength());
     imposeLimits(path);
@@ -66,10 +66,10 @@ wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(V
     finalTime = trajProfile.back().time;
     std::cout << trajProfile.back().time << " final time \n";
     std::cout << "finished genTraj" <<std::endl;
-    /*for (size_t i = 0; i < trajProfile.size(); i++)
+    for (size_t i = 0; i < trajProfile.size(); i++)
     {
         std::cout<< trajProfile[i].position << " pos     ";
-    }*/
+    }
     
     return out;
 }
@@ -88,7 +88,8 @@ void TrajectoryGeneration::imposeLimits(DescretePath &path)
         Trajectory placeholder;
         placeholder.position = i * path.getDeltaLength();
         double maxAllowableVel = std::min(2 * maxVel / (2 + abs(path.getCurvature(i)) * trackWidth), maxVel);
-        //std::cout << maxAllowableVel << std::endl;
+        double thing = 2 * maxVel / (2 + abs(path.getCurvature(i)) * trackWidth);
+        std::cout << trackWidth << "trackwidth     ";
         placeholder.vel = maxAllowableVel;
         trajProfile.push_back(placeholder);
     }
@@ -97,8 +98,7 @@ void TrajectoryGeneration::imposeLimits(DescretePath &path)
 
 
 
-void TrajectoryGeneration::printTrajectoryProfile(TrajectoryGetMode igetStuffMode)
-{
+void TrajectoryGeneration::printTrajectoryProfile(TrajectoryGetMode igetStuffMode){
     TrajectoryGetMode mode = igetStuffMode;
     for (size_t i = 0; i < trajProfile.size(); i++)
     {

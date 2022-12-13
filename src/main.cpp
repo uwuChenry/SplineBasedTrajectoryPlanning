@@ -10,17 +10,9 @@ int main(){
     std::cout << generator.getFinalTime() << std::endl;
     for (double i = 0; i < generator.getFinalTime(); i += 0.01)
     {
-        //std::cout << i <<std::endl;
         std::cout << mapp[i] << " ";
     }
     std::cout << "end";
-    //CubicBezier bezier({0, 0}, {0, 0.5}, {1.5, 2}, {2, 2});
-    //std::cout<<bezier.getLength()<< std::endl;
 
-    //CubicBezier bezier2({0, 0, 0, 0.5}, {2, 2, 0, 0.5});
-    //std::cout<<bezier.getLength();
-    //bezier2.getC1().printXandY();
-    //bezier2.getC2().printXandY();
-    //std::cout<< bezier2.getLength();
     
 }
