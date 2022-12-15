@@ -36,7 +36,7 @@ class InterpolatingMap {
     void insert(Key&& key, Value&& value) {
         m_container.insert(std::make_pair(key, value));
     }
-
+ 
     /**
      * Returns the value associated with a given key.
      *
