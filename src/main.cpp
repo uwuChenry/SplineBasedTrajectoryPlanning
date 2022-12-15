@@ -14,5 +14,8 @@ int main(){
     }
     std::cout << "end";
 
+    //std::cout << Math::getCircumRadius2({0, 0}, {0, 4}, {3, 0}) << " oo aa \n";
+    //std::cout << Math::getCircumRadius({0, 0}, {0, 4}, {3, 0}) << " thing \n";
+
     
 }

@@ -9,11 +9,11 @@ TrajectoryGeneration::TrajectoryGeneration(KinematicConstraints constraints, dou
 wpi::InterpolatingMap<double, double> TrajectoryGeneration::generateTrajectory(Vector2D istart, Vector2D iend)
 {
     CubicBezier bezier (istart, iend);
-    std::cout<<bezier.getLength(1000)<<" bezier length from gen traj\n";
+    //std::cout<<bezier.getLength(1000)<<" bezier length from gen traj\n";
     DescretePath path = bezier.generatePathByLength(0.01);
 
-    path.setDeltaLength(path.getDeltaLength());
-    imposeLimits(path);
+    //path.setDeltaLength(path.getDeltaLength());
+    imposeLimits2(path);
     trajProfile[0].vel = 0;
     trajProfile.back().vel = 0;
     trajProfile[0].time = 0;
@@ -80,6 +80,33 @@ double TrajectoryGeneration::getFinalTime()
     return finalTime;
 }
 
+void TrajectoryGeneration::imposeLimits2(DescretePath &path){
+    for (int i = 0; i < path.getSize(); i++)
+    {
+        Trajectory placeholder;
+        placeholder.position = i * path.getDeltaLength();
+        double left = maxVel - trackWidth / 2.0 * (maxVel * fabs(path.getCurvature(i))) / Math::pi;
+        double right = maxVel + trackWidth / 2.0 * (maxVel * fabs(path.getCurvature(i))) / Math::pi;
+        double realMaxSpeed = std::max(fabs(left), fabs(right));
+        if (realMaxSpeed > maxVel){
+            left = left / realMaxSpeed * maxVel;
+            right = right / realMaxSpeed * maxVel;
+        }
+        double maxAllowableVel = (left + right) / 2.0;
+        std::cout << maxAllowableVel << " vel     ";
+        //double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + abs(path.getCurvature(i)) * trackWidth), maxVel);
+        //double thing = 2 * maxVel / (2 + abs(path.getCurvature(i)) * trackWidth);
+        //std::cout << trackWidth << "trackwidth     ";
+        //std::cout << thing << " calc max vel     ";
+        //std::cout << path.getCurvature(i) << " curvature     ";
+        //std::cout << (2.0 + fabs(path.getCurvature(i)) * trackWidth) << " oo aa      ";
+        placeholder.vel = maxAllowableVel;
+        trajProfile.push_back(placeholder);
+    }
+    std::cout << trajProfile.size() << "trajprofile size";
+}
+
+
 void TrajectoryGeneration::imposeLimits(DescretePath &path)
 {
     //std::cout << "impose limit thing"<< path.getDeltaLength();
@@ -87,9 +114,12 @@ void TrajectoryGeneration::imposeLimits(DescretePath &path)
     {
         Trajectory placeholder;
         placeholder.position = i * path.getDeltaLength();
-        double maxAllowableVel = std::min(2 * maxVel / (2 + abs(path.getCurvature(i)) * trackWidth), maxVel);
+        double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + abs(path.getCurvature(i)) * trackWidth), maxVel);
         double thing = 2 * maxVel / (2 + abs(path.getCurvature(i)) * trackWidth);
-        std::cout << trackWidth << "trackwidth     ";
+        //std::cout << trackWidth << "trackwidth     ";
+        //std::cout << thing << " calc max vel     ";
+        //std::cout << path.getCurvature(i) << " curvature     ";
+        std::cout << (2.0 + fabs(path.getCurvature(i)) * trackWidth) << " oo aa      ";
         placeholder.vel = maxAllowableVel;
         trajProfile.push_back(placeholder);
     }
