@@ -25,12 +25,15 @@ class TrajectoryGeneration{
     TrajectoryGeneration(KinematicConstraints constraints, double trackWidth);
 
     wpi::InterpolatingMap<double, double> generateTrajectory(Vector2D istart, Vector2D iend);
+    InterpolatingVelWithCurvature generateTrajectory2(Vector2D istart, Vector2D iend);
 
     double getFinalTime();
 
     void imposeLimits(DescretePath& path);
 
     void imposeLimits2(DescretePath &path);
+
+    void imposeLimits3(DescretePathWithCurvature &path);
     
     void printTrajectoryProfile(TrajectoryGetMode igetStuffMode);
     

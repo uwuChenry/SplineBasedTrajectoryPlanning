@@ -33,13 +33,16 @@ class CubicBezier
     void setPoints(Point2D start, Point2D control1, Point2D control2, Point2D end);
     void setPoints(Vector2D start, Vector2D end);
     double getLength(int step = 250);
+    double getCurvature(double t) const;
+
     DescretePath generatePathByStep (int step = 500);
     DescretePath generatePathByLength (double length, int initDistStep = 250, int traverseStep = 2000, bool end = true);
+    DescretePathWithCurvature generatePathByLengthWithCurvature(double length, int initDistStep = 250, int traverseStep = 2000, bool end = true);
 
     Point2D getPoint(double t) const;
     Point2D getVelocity(double t) const;
     Point2D getAcceleration(double t) const;
-    double getCurvature(double t) const;
+ 
     Point2D getP1();
     Point2D getP2();
     Point2D getC1();

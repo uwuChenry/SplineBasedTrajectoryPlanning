@@ -1,11 +1,7 @@
 #pragma once
 #include "descretePath.hpp"
+#include "interpolatingMap.hpp"
 
-
-struct MotionProfilePath{
-    DescretePath path;
-    double deltaDistance = 0;
-}; 
 
 struct Trajectory{
     double vel;
@@ -18,6 +14,16 @@ struct TrajectoryPoint{
     double vel;
     double accel;
     double position;
+};
+
+struct PointWithCurvature{
+    Point2D point;
+    double curvature;
+};
+
+struct InterpolatingVelWithCurvature{
+    wpi::InterpolatingMap<double, double> vel;
+    wpi::InterpolatingMap<double, double> curvature;    
 };
 
 enum class TrajectoryGetMode{

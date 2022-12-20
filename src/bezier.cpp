@@ -73,6 +73,40 @@ DescretePath CubicBezier::generatePathByLength(double length, int initDistStep, 
     return out;
 }
 
+DescretePathWithCurvature CubicBezier::generatePathByLengthWithCurvature(double length, int initDistStep, int traverseStep, bool end){
+    double totalDist = getLength(initDistStep);
+    double distPerSegment = totalDist / std::ceil(totalDist / length);
+    double traversed = 0;
+    DescretePathWithCurvature out;
+    out.setDistance(totalDist);
+    out.path.push_back(getPoint(0));
+    out.curvature.push_back(getCurvature(0));
+
+    double thing = 0;
+
+    for (double t = 0; t < traverseStep; t++){
+        traversed += getPoint(t / traverseStep).distanceTo(getPoint(t / traverseStep + 1.0/traverseStep));
+        if (traversed >= distPerSegment)
+        {
+            thing += traversed;
+            traversed = 0;
+            out.path.push_back(getPoint(t / traverseStep));
+            out.curvature.push_back(getCurvature(t / traverseStep));
+        }
+    }
+    if (out.path.back().distanceTo(getPoint(1)) < distPerSegment / 2){
+        out.path.pop_back();
+        out.curvature.pop_back();
+    }
+    if (end){
+        out.path.push_back(getPoint(1));
+        out.curvature.push_back(getCurvature(1));
+        
+    }   
+    out.setDeltaLength(thing/out.getSize());
+    return out;
+}
+
 Point2D CubicBezier::getPoint(double t) const{
     return p1 * (1 - t) * (1 - t) * (1 - t) + c1 * 3 * (1 - t) * (1 - t) * t + c2 * 3 * (1 - t) * t * t + p2 * t * t * t;
 }
