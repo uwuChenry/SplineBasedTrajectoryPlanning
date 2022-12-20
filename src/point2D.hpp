@@ -18,6 +18,7 @@ class Point2D
 
     double getX();
     double getY();
+    double getMagnitude();
     void printXandY();
 
 

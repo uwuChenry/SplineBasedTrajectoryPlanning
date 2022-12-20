@@ -39,6 +39,7 @@ class CubicBezier
     Point2D getPoint(double t) const;
     Point2D getVelocity(double t) const;
     Point2D getAcceleration(double t) const;
+    double getCurvature(double t) const;
     Point2D getP1();
     Point2D getP2();
     Point2D getC1();

@@ -85,6 +85,16 @@ Point2D CubicBezier::getAcceleration(double t) const{
     return p1 * (-6 * t + 6) + c1 * (18 * t - 12) + c2 * (-18 * t + 6) + p2 * (6 * t);
 }
 
+double CubicBezier::getCurvature(double t) const{
+    Point2D v = getVelocity(t);
+    Point2D a = getAcceleration(t);
+    double vmag = v.getMagnitude();
+    double out =  (v.getX() * a.getY() - v.getY() * a.getX())/(vmag * vmag * vmag);
+    
+    if (std::isnan(out)) return 0;
+    else return out;
+}
+
 Point2D CubicBezier::getP1(){
     return this->p1;
 }

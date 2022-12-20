@@ -18,6 +18,14 @@ double Point2D::getY(){
     return this->y;
 }
 
+/*double Point2D::x(){
+    return this->x;
+}
+
+double Point2D::y(){
+    return this->y;
+}
+*/
 
 double Point2D::getAngle(Point2D a)
 {
@@ -44,6 +52,9 @@ double Point2D::distanceBetween(Point2D a, Point2D b)
     return std::sqrt(dx * dx + dy * dy);
 }
 
+double Point2D::getMagnitude(){
+    hypot(x, y);
+}
 
 double Point2D::angleBetween(Point2D a, Point2D b)
 {
