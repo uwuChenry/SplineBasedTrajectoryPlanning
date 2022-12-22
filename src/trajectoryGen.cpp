@@ -96,6 +96,15 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory2(Vector2D
     }
     finalTime = trajProfile.back().time;
 
+
+
+    for (auto thing : path.path){
+        std::cout << thing.getX() << std::endl;
+    }
+    std::cout << "\n\n\n\n\n";
+    for (auto thing : path.path){
+        std::cout << thing.getY() << std::endl;
+    }
     return {outVel, outCurvature};
 }
 
@@ -110,8 +119,8 @@ void TrajectoryGeneration::imposeLimits2(DescretePath &path){
     for (int i = 0; i < path.getSize(); i++){
         Trajectory placeholder;
         placeholder.position = i * path.getDeltaLength();
-        double left = maxVel - trackWidth / 2.0 * (maxVel * fabs(path.getCurvature(i))) / Math::pi;
-        double right = maxVel + trackWidth / 2.0 * (maxVel * fabs(path.getCurvature(i))) / Math::pi;
+        double left = maxVel - trackWidth / 2.0 * (maxVel * fabs(path.getCurvature(i)));
+        double right = maxVel + trackWidth / 2.0 * (maxVel * fabs(path.getCurvature(i)));
         double realMaxSpeed = std::max(fabs(left), fabs(right));
         if (realMaxSpeed > maxVel){
             left = left / realMaxSpeed * maxVel;
@@ -137,10 +146,12 @@ void TrajectoryGeneration::imposeLimits(DescretePath &path){
     //std::cout << trajProfile.size() << "trajprofile size";
 }
 
+//imposelimits
 void TrajectoryGeneration::imposeLimits3(DescretePathWithCurvature &path){
         for (int i = 0; i < path.getSize(); i++){
         Trajectory placeholder;
         placeholder.position = i * path.getDeltaLength();
+        
         double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + fabs(path.getCurvature(i)) * trackWidth), maxVel);
         //std::cout << maxAllowableVel << "vel    ";
         placeholder.vel = maxAllowableVel;
