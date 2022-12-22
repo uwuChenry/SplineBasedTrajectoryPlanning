@@ -24,6 +24,7 @@ Point2D DescretePath::back(){
 int DescretePath::getSize(){
     return path.size();
 }
+
 double DescretePath::getCurvature(int index){
     if (index <= 0 || (long long unsigned int)index > path.size()){
         return 0;
@@ -40,12 +41,15 @@ double DescretePath::getCurvature(int index){
 void DescretePathWithCurvature::setDistance(double idistance){
     distance = idistance;
 }
+
 double DescretePathWithCurvature::getDistance(){
     return distance;
 }
+
 void DescretePathWithCurvature::setDeltaLength(double ilength){
     deltaLength = ilength;
 }
+
 double DescretePathWithCurvature::getDeltaLength(){
     return deltaLength;
 }
@@ -54,6 +58,7 @@ double DescretePathWithCurvature::getDeltaLength(){
 int DescretePathWithCurvature::getSize(){
     return path.size();
 }
+
 double DescretePathWithCurvature::getCurvature(int index){
     if (index <= 0 || (long long unsigned int)index >= path.size()){
         return curvature[index];
@@ -64,5 +69,3 @@ double DescretePathWithCurvature::getCurvature(int index){
     if (std::isnan(radius)) return 0;
     return (1.0 / radius);
 }
-
-
