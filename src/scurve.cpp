@@ -1,5 +1,5 @@
-#include "scurve.hpp"
-#include "structs.hpp"
+#include "include/scurve.hpp"
+#include "include/structs.hpp"
 #include "iostream"
 
 

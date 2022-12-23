@@ -1,5 +1,5 @@
-#include "math.hpp"
-#include <cmath>
+#include "include/math.hpp"
+
 
 //this math is wrong
 double Math::getCircumRadius(Point2D a, Point2D b, Point2D c)

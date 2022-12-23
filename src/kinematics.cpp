@@ -1,4 +1,4 @@
-#include "kinematics.hpp"
+#include "include/kinematics.hpp"
 
 
 double inverseKinematics::toRightWheelSpeeds(double linearSpeed, double angularVelocity){

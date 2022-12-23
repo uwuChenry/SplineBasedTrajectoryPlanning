@@ -1,4 +1,4 @@
-#include "descretePath.hpp"
+#include "include/descretePath.hpp"
 
 void DescretePath::setDistance(double idistance){
     distance = idistance;

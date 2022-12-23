@@ -1,6 +1,6 @@
-
 #pragma once
 
+#include <cmath>
 #include "point2D.hpp"
 
 class Math{

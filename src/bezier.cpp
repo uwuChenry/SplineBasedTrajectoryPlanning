@@ -1,4 +1,4 @@
-#include "bezier.hpp"
+#include "include/bezier.hpp"
 
 
 double CubicBezier::getLength(int step){

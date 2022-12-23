@@ -1,4 +1,4 @@
-#include "trajectoryGen.hpp"
+#include "include/trajectoryGen.hpp"
 
 TrajectoryGeneration::TrajectoryGeneration(KinematicConstraints constraints, double trackWidth) 
     : maxVel(constraints.maxVel)
