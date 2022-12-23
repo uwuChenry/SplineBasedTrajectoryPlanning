@@ -7,6 +7,25 @@ TrajectoryGeneration::TrajectoryGeneration(KinematicConstraints constraints, dou
     , trackWidth(trackWidth){};
 
 
+
+double TrajectoryGeneration::getFinalTime(){
+    return finalTime;
+}
+
+
+//imposelimits
+void TrajectoryGeneration::imposeLimits(DescretePathWithCurvature &path){
+        for (int i = 0; i < path.getSize(); i++){
+        Trajectory placeholder;
+        placeholder.position = i * path.getDeltaLength();
+        double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + fabs(path.getCurvature(i)) * trackWidth), maxVel);
+        placeholder.vel = maxAllowableVel;
+        trajProfile.push_back(placeholder);
+    }
+}
+
+
+
 InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory(Vector2D istart, Vector2D iend){
     CubicBezier bezier (istart, iend);
     DescretePathWithCurvature path = bezier.generatePathByLengthWithCurvature(0.01, 2000);
@@ -15,6 +34,9 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory(Vector2D 
     trajProfile[0].vel = 0;
     trajProfile.back().vel = 0;
     trajProfile[0].time = 0;
+    
+    wpi::InterpolatingMap<double, double> outVel;
+    wpi::InterpolatingMap<double, double> outCurvature;
     
     for (size_t i = 1; i < trajProfile.size(); i++){
         trajProfile[i].vel = std::min(trajProfile[i].vel, (sqrt(trajProfile[i - 1].vel * trajProfile[i - 1].vel + 2 * maxAccel * path.getDeltaLength())));
@@ -37,13 +59,9 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory(Vector2D 
         }
     }
 
-    wpi::InterpolatingMap<double, double> outVel;
-    wpi::InterpolatingMap<double, double> outCurvature;
 
     for (size_t i = 0; i < trajProfile.size(); i++){
         outVel.insert(trajProfile[i].time, trajProfile[i].vel);
-    }
-    for (size_t i = 0; i < trajProfile.size(); i++){
         outCurvature.insert(trajProfile[i].time, path.curvature[i]);
     }
     finalTime = trajProfile.back().time;
@@ -53,22 +71,6 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory(Vector2D 
 
 
 
-double TrajectoryGeneration::getFinalTime(){
-    return finalTime;
-}
 
 
-
-//imposelimits
-void TrajectoryGeneration::imposeLimits(DescretePathWithCurvature &path){
-        for (int i = 0; i < path.getSize(); i++){
-        Trajectory placeholder;
-        placeholder.position = i * path.getDeltaLength();
-        
-        double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + fabs(path.getCurvature(i)) * trackWidth), maxVel);
-        //std::cout << maxAllowableVel << "vel    ";
-        placeholder.vel = maxAllowableVel;
-        trajProfile.push_back(placeholder);
-    }
-}
 

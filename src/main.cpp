@@ -9,7 +9,6 @@ int main(){
     inverseKinematics kinematics (0.3048);
     TrajectoryGeneration generator(constraints, 0.3048);
     auto thing = generator.generateTrajectory({0, 0, 0}, {2,2,0});
-    std::cout << generator.getFinalTime() << "final time\n";
     scurveProfile scurve (constraints);
     CubicBezier bezier ({0, 0, 0}, {2,2,0});
     scurve.generateProfile(bezier.getLength());
