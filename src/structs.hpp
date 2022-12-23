@@ -17,11 +17,12 @@ struct VelWithCurvature{
     vel(ivel), curvature(icurvature){};
 };
 
-
+//vel accel position curvature
 struct TrajectoryPoint{
     double vel;
     double accel;
     double position;
+    double curvature;
 };
 
 struct PointWithCurvature{
@@ -33,6 +34,8 @@ struct InterpolatingVelWithCurvature{
     wpi::InterpolatingMap<double, double> vel;
     wpi::InterpolatingMap<double, double> curvature;    
 };
+
+
 
 enum class TrajectoryGetMode{
     vel = 0,

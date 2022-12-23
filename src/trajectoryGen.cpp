@@ -97,16 +97,62 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory2(Vector2D
     finalTime = trajProfile.back().time;
 
 
-
+/*
     for (auto thing : path.path){
         std::cout << thing.getX() << std::endl;
     }
     std::cout << "\n\n\n\n\n";
     for (auto thing : path.path){
         std::cout << thing.getY() << std::endl;
-    }
+    }*/
     return {outVel, outCurvature};
 }
+
+
+
+
+InterpolatingTrajectoryPoint TrajectoryGeneration::generateTrajectory3(Vector2D istart, Vector2D iend){
+    CubicBezier bezier (istart, iend);
+    DescretePathWithCurvature path = bezier.generatePathByLengthWithCurvature(0.01, 2000);
+
+    imposeLimits3(path);
+    trajProfile[0].vel = 0;
+    trajProfile.back().vel = 0;
+    trajProfile[0].time = 0;
+    
+    for (size_t i = 1; i < trajProfile.size(); i++){
+        trajProfile[i].vel = std::min(trajProfile[i].vel, (sqrt(trajProfile[i - 1].vel * trajProfile[i - 1].vel + 2 * maxAccel * path.getDeltaLength())));
+    }
+
+    for (int i = trajProfile.size() - 2; i >= 0; i--){
+        trajProfile[i].vel = std::min(trajProfile[i].vel, sqrt(trajProfile[i + 1].vel * trajProfile[i + 1].vel + 2 * maxAccel * path.getDeltaLength()));    
+    }
+    
+    for (size_t i = 0; i < trajProfile.size() - 1; i++){
+        trajProfile[i].accel = (trajProfile[i + 1].vel * trajProfile[i + 1].vel - trajProfile[i].vel * trajProfile[i].vel) / (2 * path.getDeltaLength());
+    }
+
+    for (size_t i = 1; i < trajProfile.size(); i++){
+        if (trajProfile[i - 1].accel != 0){
+            trajProfile[i].time = trajProfile[i - 1].time + (trajProfile[i].vel - trajProfile[i - 1].vel) / trajProfile[i - 1].accel;
+        }
+        else{
+            trajProfile[i].time = trajProfile[i - 1].time + path.getDeltaLength() / trajProfile[i].vel;
+        }
+    }
+
+    finalTime = trajProfile.back().time;
+
+    InterpolatingTrajectoryPoint out;
+    for (size_t i = 0; i < trajProfile.size(); i++){
+        out.insert(trajProfile[i].time, {trajProfile[i].vel, trajProfile[i].accel, trajProfile[i].position, path.curvature[i]});
+    }
+
+    return out;
+}
+
+
+
 
 
 double TrajectoryGeneration::getFinalTime()

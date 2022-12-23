@@ -53,7 +53,7 @@ double Point2D::distanceBetween(Point2D a, Point2D b)
 }
 
 double Point2D::getMagnitude(){
-    hypot(x, y);
+    return hypot(x, y);
 }
 
 double Point2D::angleBetween(Point2D a, Point2D b)

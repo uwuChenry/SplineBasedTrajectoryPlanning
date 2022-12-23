@@ -7,6 +7,7 @@
 #include <iostream>
 #include "vector2D.hpp"
 #include "bezier.hpp"
+#include "interpolatingMap2.hpp"
 
 
 
@@ -26,6 +27,7 @@ class TrajectoryGeneration{
 
     wpi::InterpolatingMap<double, double> generateTrajectory(Vector2D istart, Vector2D iend);
     InterpolatingVelWithCurvature generateTrajectory2(Vector2D istart, Vector2D iend);
+    InterpolatingTrajectoryPoint generateTrajectory3(Vector2D istart, Vector2D iend);
 
     double getFinalTime();
 

@@ -157,7 +157,7 @@ void scurveProfile::generateProfile(double idistance){
     fPosPhase[6] = fPosPhase[5] + fVelPhase[5] * fTimePhase[6] - aPeak * fTimePhase[6] * fTimePhase[6] / 2 + jerk * fTimePhase[6] * fTimePhase[6] * fTimePhase[6] / 6;
 
 
-    int stepAmount = timePhase[6] * 100 - 5;
+    size_t stepAmount = timePhase[6] * 100 - 5;
     for (size_t i = 0; i < stepAmount; i++)
     {
         double currentTime = i * 10;

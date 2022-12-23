@@ -11,7 +11,6 @@ class scurveProfile{
     private:
 
     KinematicConstraints constraints;
-    double trackWidth;
 
         // Internal things to kep track of
 
@@ -49,9 +48,8 @@ class scurveProfile{
     public:
     //constraints, chassis controller, scales, gear ratio, scurve ff left, scurve ff right, pp ff left, pp ff right
     scurveProfile (
-        KinematicConstraints iconstraints, double trackWidth)
-        : trackWidth(trackWidth)
-        , constraints(iconstraints)
+        KinematicConstraints iconstraints)
+        : constraints(iconstraints)
         , vMax(iconstraints.maxVel)
         , aMax(iconstraints.maxAccel)
         , jerk(iconstraints.maxJerk)
