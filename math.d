@@ -1,1 +1,1 @@
-obj/math.o: src/math.cpp src/math.hpp src/point2D.hpp
+obj/math.o: src/math.cpp src/include/math.hpp src/include/point2D.hpp

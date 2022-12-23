@@ -1,2 +1,2 @@
-obj/vector2D.o: src/vector2D.cpp src/vector2D.hpp src/point2D.hpp \
- src/math.hpp
+obj/vector2D.o: src/vector2D.cpp src/include/vector2D.hpp \
+ src/include/point2D.hpp src/include/math.hpp

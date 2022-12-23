@@ -1,4 +1,5 @@
-obj/trajectoryGen.o: src/trajectoryGen.cpp src/trajectoryGen.hpp \
- src/descretePath.hpp src/point2D.hpp src/math.hpp src/structs.hpp \
- src/interpolatingMap.hpp src/vector2D.hpp src/bezier.hpp \
- src/interpolatingMap2.hpp
+obj/trajectoryGen.o: src/trajectoryGen.cpp src/include/trajectoryGen.hpp \
+ src/include/descretePath.hpp src/include/point2D.hpp \
+ src/include/math.hpp src/include/structs.hpp \
+ src/include/interpolatingMap.hpp src/include/vector2D.hpp \
+ src/include/bezier.hpp src/include/interpolatingMap2.hpp
