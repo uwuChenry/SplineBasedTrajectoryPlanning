@@ -1,4 +1,6 @@
-obj/main.o: src/main.cpp src/main.h src/bezier.hpp src/point2D.hpp \
- src/vector2D.hpp src/math.hpp src/structs.hpp src/descretePath.hpp \
- src/interpolatingMap.hpp src/kinematics.hpp src/trajectoryGen.hpp \
- src/interpolatingMap2.hpp src/scurve.hpp
+obj/main.o: src/main.cpp src/include/main.h src/include/bezier.hpp \
+ src/include/point2D.hpp src/include/vector2D.hpp src/include/math.hpp \
+ src/include/structs.hpp src/include/descretePath.hpp \
+ src/include/interpolatingMap.hpp src/include/kinematics.hpp \
+ src/include/trajectoryGen.hpp src/include/interpolatingMap2.hpp \
+ src/include/scurve.hpp

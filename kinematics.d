@@ -1,2 +1,2 @@
-obj/kinematics.o: src/kinematics.cpp src/kinematics.hpp src/math.hpp \
- src/point2D.hpp
+obj/kinematics.o: src/kinematics.cpp src/include/kinematics.hpp \
+ src/include/math.hpp src/include/point2D.hpp
