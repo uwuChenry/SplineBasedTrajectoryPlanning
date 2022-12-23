@@ -36,14 +36,6 @@ struct InterpolatingVelWithCurvature{
 };
 
 
-
-enum class TrajectoryGetMode{
-    vel = 0,
-    accel = 1,
-    pos = 2,
-};
-
-
 struct KinematicConstraints{
     double maxVel;
     double maxAccel;

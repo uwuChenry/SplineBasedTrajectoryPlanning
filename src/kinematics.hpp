@@ -10,6 +10,6 @@ class inverseKinematics {
     double toLeftWheelSpeeds(double linearSpeed, double angularVelocity);
     double toRightWheelSpeeds2(double linearSpeed, double curvature);
     double toLeftWheelSpeeds2(double linearSpeed, double curvature);
-    double toRightWheelAccel2(double linearAccel, double curvature);
-    double toLeftWheelAccel2(double linearAccel, double curvature);
+    //double toRightWheelAccel2(double linearAccel, double curvature);
+    //double toLeftWheelAccel2(double linearAccel, double curvature);
 };

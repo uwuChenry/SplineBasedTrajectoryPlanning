@@ -47,7 +47,7 @@ int main(){
     CubicBezier bezier ({0, 0, 0}, {2,2,0});
     scurve.generateProfile(bezier.getLength());
     for (auto& thing : scurve.pathTrajectory){
-        std::cout << thing.vel << std::endl;
+        //std::cout << thing.vel << std::endl;
     }
 
     //rightTraj.front().position = 0.0;
@@ -95,8 +95,8 @@ int main(){
     leftTraj.pop_back();
     rightTraj.pop_back();
 
-    for (auto thing : rightTraj){
-        //std::cout << thing.accel << std::endl;
+    for (auto thing : leftTraj){
+        std::cout << thing.accel << std::endl;
     }
     
 

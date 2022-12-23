@@ -4,16 +4,6 @@
 
 
 
-double scurveProfile::rpmToLinear(double rpm){
-        return 0.08255 * (3.0/5.0) / 2 * (rpm / 60 * 6.28318530718);
-    }
-
-double scurveProfile::encoderTickToMeter(double encoderTicks){
-        return encoderTicks/300 * (3.0 / 5.0) * 0.08255 * 3.141592653589793116;
-    }
-
-
-
 Trajectory scurveProfile::calculateTrajectory(double time)
 {
     if (time < timePhase[0]){

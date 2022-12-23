@@ -23,8 +23,9 @@ class Point2D
 
 
     
-    double getAngle (Point2D a);
+    double getAngle();
     double distanceTo(Point2D b);
+    double getAngleTo(Point2D b);
 
 
     static Point2D subtract(Point2D a, Point2D b);

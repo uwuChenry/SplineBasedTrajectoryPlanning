@@ -36,8 +36,7 @@ class TrajectoryGeneration{
     void imposeLimits2(DescretePath &path);
 
     void imposeLimits3(DescretePathWithCurvature &path);
-    
-    void printTrajectoryProfile(TrajectoryGetMode igetStuffMode);
+
     
     
     std::vector<std::pair<Trajectory, Trajectory>> calculateFinalTrajectoryProfile();

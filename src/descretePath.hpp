@@ -4,7 +4,6 @@
 #include "point2D.hpp"
 #include <cmath>
 #include "math.hpp"
-
 #include "structs.hpp"
 
 class DescretePath{
