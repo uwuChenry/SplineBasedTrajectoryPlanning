@@ -43,7 +43,12 @@ int main(){
     TrajectoryGeneration generator(constraints, 0.3048);
     auto thing = generator.generateTrajectory2({0, 0, 0}, {2,2,0});
     std::cout << generator.getFinalTime() << "final time\n";
-
+    scurveProfile scurve (constraints);
+    CubicBezier bezier ({0, 0, 0}, {2,2,0});
+    scurve.generateProfile(bezier.getLength());
+    for (auto& thing : scurve.pathTrajectory){
+        std::cout << thing.vel << std::endl;
+    }
 
     //rightTraj.front().position = 0.0;
     //leftTraj.front().position = 0.0;
@@ -91,7 +96,7 @@ int main(){
     rightTraj.pop_back();
 
     for (auto thing : rightTraj){
-        std::cout << thing.accel << std::endl;
+        //std::cout << thing.accel << std::endl;
     }
     
 

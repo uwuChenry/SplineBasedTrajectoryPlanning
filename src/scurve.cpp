@@ -16,49 +16,41 @@ double scurveProfile::encoderTickToMeter(double encoderTicks){
 
 Trajectory scurveProfile::calculateTrajectory(double time)
 {
-    if (time < timePhase[0])
-    {
+    if (time < timePhase[0]){
         double pos1 = jerk * time * time * time / 6;
         return {(jerk * time * time / 2), (jerk * time), pos1, time};
     }
-    else if (time < timePhase[1])
-    {
+    else if (time < timePhase[1]){
         double dt2 = time - timePhase[0];
         double pos2 = fPosPhase[0] + fVelPhase[0] * dt2 + aPeak * dt2 * dt2 / 2;
         return {(fVelPhase[0] + (aPeak * dt2)), (aPeak), pos2, time};
     }
-    else if (time < timePhase[2])
-    {
+    else if (time < timePhase[2]){
         double dt3 = time - timePhase[1];
         double pos3 = fPosPhase[1] + fVelPhase[1] * dt3 + aPeak * dt3 * dt3 / 2 - jerk * dt3 * dt3 * dt3 / 6;
         return {(fVelPhase[1] + (aPeak * dt3) - (jerk * dt3 * dt3 / 2)), (aPeak - (jerk * dt3)), pos3, time};
     }
-    else if (time < timePhase[3])
-    {
+    else if (time < timePhase[3]){
         double dt4 = time - timePhase[2];
         double pos4 = fPosPhase[2] + fVelPhase[2] * dt4;
         return {(fVelPhase[2]), 0, pos4, time};
     }
-    else if (time < timePhase[4])
-    {
+    else if (time < timePhase[4]){
         double dt5 = time - timePhase[3];
         double pos5 = fPosPhase[3] + fVelPhase[3] * dt5 - jerk * dt5 * dt5 * dt5 / 6;
         return {(fVelPhase[3] - (jerk * dt5 * dt5 / 2)), (-jerk * dt5), pos5, time};
     }
-    else if (time < timePhase[5])
-    {
+    else if (time < timePhase[5]){
         double dt6 = time - timePhase[4];
         double pos6 = fPosPhase[4] + fVelPhase[4] * dt6 - aPeak * dt6 * dt6 / 2;
         return {(fVelPhase[4] - (aPeak * dt6)), (-aPeak), pos6, time};
     }
-    else if (time < timePhase[6])
-    {
+    else if (time < timePhase[6]){
         double dt7 = time - timePhase[5];
         double pos7 = fPosPhase[5] + fVelPhase[5] * dt7 - aPeak * dt7 * dt7 / 2 + jerk * dt7 * dt7 * dt7 / 6;
         return {(fVelPhase[5] + (-aPeak * dt7) + (jerk * dt7 * dt7 / 2)), (-aPeak + jerk * dt7), pos7, time};
     }
-    else
-    {
+    else{
         return {0, 0, 0, 0};
     }
 }
@@ -88,6 +80,7 @@ void scurveProfile::generateProfile(double idistance){
         timePhase[5] = timePhase[3] + taa + ta;
         timePhase[6] = timePhase[3] + totalAccelTime;
     }   
+
     if (tc <= 0 && isP4 == false){ //6 phase
         double dist = (distance / 2) - (jerk * taa * taa * taa);
         double a = (jerk * taa / 2);
@@ -96,12 +89,10 @@ void scurveProfile::generateProfile(double idistance){
         double root1 = (-b + sqrt((b * b) - (4 * a * c))) / (2 * a);
         double root2 = (-b - sqrt((b * b) - (4 * a * c))) / (2 * a);
         double ta6;
-        if (root1 > 0)
-        {
+        if (root1 > 0){
             ta6 = root1;
         }
-        else if (root2 > 0)
-        {
+        else if (root2 > 0){
             ta6 = root2;
         }
 
@@ -114,6 +105,7 @@ void scurveProfile::generateProfile(double idistance){
         timePhase[5] = timePhase[2] + ta6 + taa;
         timePhase[6] = timePhase[2] + taa + taa + ta6;
     }
+
     if (tc <= 0 && isP4 == true){ //4 phase
         double taa4 = cbrt((distance / 2) / jerk);
         std::cout << "4 Phase" << std::endl;
@@ -157,9 +149,8 @@ void scurveProfile::generateProfile(double idistance){
     fPosPhase[6] = fPosPhase[5] + fVelPhase[5] * fTimePhase[6] - aPeak * fTimePhase[6] * fTimePhase[6] / 2 + jerk * fTimePhase[6] * fTimePhase[6] * fTimePhase[6] / 6;
 
 
-    size_t stepAmount = timePhase[6] * 100 - 5;
-    for (size_t i = 0; i < stepAmount; i++)
-    {
+    int stepAmount = timePhase[6] * 100 - 5;
+    for (int i = 0; i < stepAmount; i++){
         double currentTime = i * 10;
         double currentTimeInS = currentTime / 1000;
         auto traj = calculateTrajectory(currentTimeInS);

@@ -204,3 +204,4 @@ void TrajectoryGeneration::imposeLimits3(DescretePathWithCurvature &path){
         trajProfile.push_back(placeholder);
     }
 }
+

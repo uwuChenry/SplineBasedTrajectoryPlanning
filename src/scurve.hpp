@@ -37,7 +37,7 @@ class scurveProfile{
     //void generateTime(double idistance);
     Trajectory calculateTrajectory(double time);
     //void calculateTrajectoryLinear2(double distance, bool isReversed);
-    
+    public:
     void generateProfile(double idistance);
  
     //rpm to meterPerSecond
@@ -45,7 +45,7 @@ class scurveProfile{
     double encoderTickToMeter(double encoderTicks);
 
 
-    public:
+
     //constraints, chassis controller, scales, gear ratio, scurve ff left, scurve ff right, pp ff left, pp ff right
     scurveProfile (
         KinematicConstraints iconstraints)
