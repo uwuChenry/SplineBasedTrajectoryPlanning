@@ -1,5 +1,5 @@
 #include "include/descretePath.hpp"
-
+/*
 void DescretePath::setDistance(double idistance){
     distance = idistance;
 }
@@ -36,7 +36,7 @@ double DescretePath::getCurvature(int index){
     }
     return (1.0 / radius);
 }
-
+*/
 
 void DescretePathWithCurvature::setDistance(double idistance){
     distance = idistance;

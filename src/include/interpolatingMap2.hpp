@@ -3,37 +3,19 @@
 #include <map>
 #include "structs.hpp"
 
-
+/*
 class InterpolatingTrajectoryPoint {
     public:
-    /**
-     * Inserts a key-value pair.
-     *
-     * @param key   The key.
-     * @param value The value.
-     */
+
     void insert(const double& key, const TrajectoryPoint& value) {
         m_container.insert(std::make_pair(key, value));
     }
 
-    /**
-     * Inserts a key-value pair.
-     *
-     * @param key   The key.
-     * @param value The value.
-     */
+
     void insert(double&& key, TrajectoryPoint&& value) {
         m_container.insert(std::make_pair(key, value));
     }
  
-    /**
-     * Returns the value associated with a given key.
-     *
-     * If there's no matching key, the value returned will be a linear
-     * interpolation between the keys before and after the provided one.
-     *
-     * @param key The key.
-     */
     TrajectoryPoint operator[](const double& key) const {
         using const_iterator = typename std::map<double, TrajectoryPoint>::const_iterator;
         // Get iterator to upper bound key-value pair for the given key
@@ -58,11 +40,9 @@ class InterpolatingTrajectoryPoint {
             delta * upper->second.curvature + (1.0 - delta) * lower->second.curvature};
     }
 
-    /**
-     * Clears the contents.
-     */
+
     void clear() { m_container.clear(); }
 
     private:
     std::map<double, TrajectoryPoint> m_container;
-};
+}; */

@@ -35,8 +35,8 @@ class CubicBezier
     double getLength(int step = 250);
     double getCurvature(double t) const;
 
-    DescretePath generatePathByStep (int step = 500);
-    DescretePath generatePathByLength (double length, int initDistStep = 250, int traverseStep = 2000, bool end = true);
+    DescretePathWithCurvature generatePathByStep (int step = 500);
+    //DescretePath generatePathByLength (double length, int initDistStep = 250, int traverseStep = 2000, bool end = true);
     DescretePathWithCurvature generatePathByLengthWithCurvature(double length, int initDistStep = 250, int traverseStep = 2000, bool end = true);
 
     Point2D getPoint(double t) const;

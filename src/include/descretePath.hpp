@@ -5,7 +5,7 @@
 #include <cmath>
 #include "math.hpp"
 #include "structs.hpp"
-
+/*
 class DescretePath{
     std::vector<Point2D> path = {};
     double deltaLength;
@@ -33,7 +33,7 @@ class DescretePath{
     double getCurvature(int index);
 
 };
-
+*/
 
 
 class DescretePathWithCurvature{

@@ -17,7 +17,6 @@ class TrajectoryGeneration{
     double trackWidth;
     double finalTime;  
 
-    DescretePath path;
     std::vector<Trajectory> trajProfile;
     std::vector<std::pair<Trajectory, Trajectory>> generatedPath;
 
@@ -25,17 +24,11 @@ class TrajectoryGeneration{
 
     TrajectoryGeneration(KinematicConstraints constraints, double trackWidth);
 
-    wpi::InterpolatingMap<double, double> generateTrajectory(Vector2D istart, Vector2D iend);
-    InterpolatingVelWithCurvature generateTrajectory2(Vector2D istart, Vector2D iend);
-    InterpolatingTrajectoryPoint generateTrajectory3(Vector2D istart, Vector2D iend);
+    InterpolatingVelWithCurvature generateTrajectory(Vector2D istart, Vector2D iend);
 
     double getFinalTime();
 
-    void imposeLimits(DescretePath& path);
-
-    void imposeLimits2(DescretePath &path);
-
-    void imposeLimits3(DescretePathWithCurvature &path);
+    void imposeLimits(DescretePathWithCurvature &path);
 
     
     
