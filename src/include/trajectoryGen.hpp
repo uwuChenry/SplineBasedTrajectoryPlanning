@@ -30,6 +30,7 @@ class TrajectoryGeneration{
 
     void imposeLimits(DescretePathWithCurvature &path);
 
+    void imposeLimitsPositionVel(std::vector<VelocityLimit> ilimits, DescretePathWithCurvature &path);
     
     
     std::vector<std::pair<Trajectory, Trajectory>> calculateFinalTrajectoryProfile();

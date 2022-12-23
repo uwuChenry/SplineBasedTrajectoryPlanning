@@ -45,9 +45,12 @@ Trajectory scurveProfile::calculateTrajectory(double time)
     }
 }
 
+
+
 void scurveProfile::generateProfile(double idistance){
     double distance = idistance;
     double taa = aMax / jerk;
+    pathTrajectory.clear();
 
     double velInStageThreeStart = vMax - (jerk * taa * taa / 2);
     double velInStageOneEnd = jerk * taa * taa / 2;
@@ -149,6 +152,16 @@ void scurveProfile::generateProfile(double idistance){
 }
 
 
+std::vector<VelocityLimit> scurveProfile::generateVelocityLimits(double idistance){
+    generateProfile(idistance);
+    std::vector<VelocityLimit> out;
+    for (size_t i = 0; i < pathTrajectory.size() - 1; i++){
+        out.push_back({pathTrajectory[i].position, pathTrajectory[i+1].position, pathTrajectory[i].vel});
+    }
+    for (auto& thing : out){
+        std::cout << thing.dEnd << "    ";
+    }
+}
 
 
 

@@ -25,11 +25,15 @@ struct TrajectoryPoint{
     double curvature;
 };
 
+struct VelocityLimit{
+    double dStart,  dEnd,  velocity;
+};
+/*
 struct PointWithCurvature{
     Point2D point;
     double curvature;
 };
-
+*/
 struct InterpolatingVelWithCurvature{
     wpi::InterpolatingMap<double, double> vel;
     wpi::InterpolatingMap<double, double> curvature;    

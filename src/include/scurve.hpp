@@ -25,10 +25,13 @@ class scurveProfile{
 
     //void generateTime(double idistance);
     Trajectory calculateTrajectory(double time);
+    //Trajectory calculateTrajectorySimple(double time);
     //void calculateTrajectoryLinear2(double distance, bool isReversed);
     public:
     void generateProfile(double idistance);
+    //void generateProfileSimple(double idistance);
  
+    std::vector<VelocityLimit> generateVelocityLimits(double idistance);
 
     scurveProfile (
         KinematicConstraints iconstraints)

@@ -15,12 +15,21 @@ double TrajectoryGeneration::getFinalTime(){
 
 //imposelimits
 void TrajectoryGeneration::imposeLimits(DescretePathWithCurvature &path){
-        for (int i = 0; i < path.getSize(); i++){
+    for (int i = 0; i < path.getSize(); i++){
         Trajectory placeholder;
         placeholder.position = i * path.getDeltaLength();
         double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + fabs(path.getCurvature(i)) * trackWidth), maxVel);
         placeholder.vel = maxAllowableVel;
         trajProfile.push_back(placeholder);
+    }
+}
+
+void TrajectoryGeneration::imposeLimitsPositionVel(std::vector<VelocityLimit> ilimits, DescretePathWithCurvature &path){
+
+    for(int i = 0; i < ilimits.size(); i++){
+        for(double p = ilimits[i].dStart; p <= ilimits[i].dEnd; p += path.getDeltaLength()){
+            trajProfile[p/path.getDeltaLength()].vel = ilimits[i].velocity;
+        }
     }
 }
 
