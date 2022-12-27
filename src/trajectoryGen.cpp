@@ -1,4 +1,5 @@
 #include "include/trajectoryGen.hpp"
+#include "include/scurve.hpp"
 
 TrajectoryGeneration::TrajectoryGeneration(KinematicConstraints constraints, double trackWidth) 
     : maxVel(constraints.maxVel)
@@ -25,8 +26,7 @@ void TrajectoryGeneration::imposeLimits(DescretePathWithCurvature &path){
 }
 
 void TrajectoryGeneration::imposeLimitsPositionVel(std::vector<VelocityLimit> ilimits, DescretePathWithCurvature &path){
-
-    for(int i = 0; i < ilimits.size(); i++){
+    for(size_t i = 0; i < ilimits.size(); i++){
         for(double p = ilimits[i].dStart; p <= ilimits[i].dEnd; p += path.getDeltaLength()){
             trajProfile[p/path.getDeltaLength()].vel = ilimits[i].velocity;
         }
@@ -38,8 +38,10 @@ void TrajectoryGeneration::imposeLimitsPositionVel(std::vector<VelocityLimit> il
 InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory(Vector2D istart, Vector2D iend){
     CubicBezier bezier (istart, iend);
     DescretePathWithCurvature path = bezier.generatePathByLengthWithCurvature(0.01, 2000);
+    scurveProfile scurve ({maxVel, maxAccel, maxJerk});
 
     imposeLimits(path);
+    imposeLimitsPositionVel(scurve.generateVelocityLimits(bezier.getLength(1000)), path);
     trajProfile[0].vel = 0;
     trajProfile.back().vel = 0;
     trajProfile[0].time = 0;

@@ -158,9 +158,10 @@ std::vector<VelocityLimit> scurveProfile::generateVelocityLimits(double idistanc
     for (size_t i = 0; i < pathTrajectory.size() - 1; i++){
         out.push_back({pathTrajectory[i].position, pathTrajectory[i+1].position, pathTrajectory[i].vel});
     }
-    for (auto& thing : out){
+    return out;
+    /*for (auto& thing : out){
         std::cout << thing.dEnd << "    ";
-    }
+    }*/
 }
 
 
