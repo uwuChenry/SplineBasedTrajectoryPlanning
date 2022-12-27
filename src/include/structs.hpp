@@ -28,6 +28,8 @@ struct TrajectoryPoint{
 struct VelocityLimit{
     double dStart,  dEnd,  velocity;
 };
+
+
 /*
 struct PointWithCurvature{
     Point2D point;

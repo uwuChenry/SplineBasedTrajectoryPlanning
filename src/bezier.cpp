@@ -74,12 +74,12 @@ DescretePathWithCurvature CubicBezier::generatePathByLengthWithCurvature(double 
     out.path.push_back(getPoint(0));
     out.curvature.push_back(getCurvature(0));
 
-    double thing = 0;
+    double seg = 0;
 
     for (double t = 0; t < traverseStep; t++){
         traversed += getPoint(t / traverseStep).distanceTo(getPoint(t / traverseStep + 1.0/traverseStep));
         if (traversed >= distPerSegment){
-            thing += traversed;
+            seg += traversed;
             traversed = 0;
             out.path.push_back(getPoint(t / traverseStep));
             out.curvature.push_back(getCurvature(t / traverseStep));
@@ -94,7 +94,7 @@ DescretePathWithCurvature CubicBezier::generatePathByLengthWithCurvature(double 
         out.curvature.push_back(getCurvature(1));
         
     }   
-    out.setDeltaLength(thing/out.getSize());
+    out.setDeltaLength(seg/out.getSize());
     return out;
 }
 

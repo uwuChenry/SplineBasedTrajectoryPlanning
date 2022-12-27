@@ -9,10 +9,6 @@ int main(){
     inverseKinematics kinematics (0.3048);
     TrajectoryGeneration generator(constraints, 0.3048);
     auto thing = generator.generateTrajectory({0, 0, 0}, {2,2,0});
-    //scurveProfile scurve (constraints);
-    //CubicBezier bezier ({0, 0, 0}, {2,2,0});
-    //std::cout << bezier.getLength() << " length \n";
-    //scurve.generateProfile(bezier.getLength());
 
     for (double i = 0; i < generator.getFinalTime(); i+= 0.01){
         double vel = thing.vel[i];
@@ -47,9 +43,15 @@ int main(){
     leftTraj.pop_back();
     rightTraj.pop_back();
 
-    for (auto thing : leftTraj){
-        std::cout << thing.accel << std::endl;
-    }
+    //for (auto thing : leftTraj){
+        //std::cout << thing.accel << std::endl;
+    //}
     
+
+    //auto thing2 = Math::cubicSolver2((8.0/6), -1.15, 0.330625, -0.03);
+    //auto thing3 = cubicRoots2({ , ,3});
+    //std::cout << Math::findSmallestRoot(thing2);
+    //std::cout << thing2.root1.value() << "root1 " << thing2.root2.value() << " root2 " << thing2.root3.value() << " root3 \n";
+    //std::cout << "hi";
    //scurve.generateVelocityLimits(bezier.getLength());
 }

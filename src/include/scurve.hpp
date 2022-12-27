@@ -25,6 +25,7 @@ class scurveProfile{
 
     //void generateTime(double idistance);
     Trajectory calculateTrajectory(double time);
+    Trajectory calculateTrajectoryFromDistance(double distance);
     //Trajectory calculateTrajectorySimple(double time);
     //void calculateTrajectoryLinear2(double distance, bool isReversed);
     public:
