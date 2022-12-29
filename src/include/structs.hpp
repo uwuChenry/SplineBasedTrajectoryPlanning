@@ -2,6 +2,8 @@
 #include "descretePath.hpp"
 #include "interpolatingMap.hpp"
 
+
+
 //vel accel pos time
 struct Trajectory{
     double vel;

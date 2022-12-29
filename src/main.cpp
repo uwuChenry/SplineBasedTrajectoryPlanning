@@ -5,13 +5,14 @@
 int main(){   
     std::vector<Trajectory> leftTraj;
     std::vector<Trajectory> rightTraj;
-    KinematicConstraints constraints(1.2, 2.3, 8);
+    KinematicConstraints constraints(1.45, 2.55, 6);
     inverseKinematics kinematics (0.3048);
     TrajectoryGeneration generator(constraints, 0.3048);
-    auto thing = generator.generateTrajectory({0, 0, 0}, {2,2,0});
+    auto thing = generator.generateTrajectory2({0, 0, 0}, {2,0,0});
 
     for (double i = 0; i < generator.getFinalTime(); i+= 0.01){
         double vel = thing.vel[i];
+        //std::cout << vel << std::endl;
         double curv = thing.curvature[i];
         Trajectory leftPlaceholder;
         leftPlaceholder.vel = kinematics.toLeftWheelSpeeds2(vel, curv);
@@ -43,15 +44,21 @@ int main(){
     leftTraj.pop_back();
     rightTraj.pop_back();
 
-    //for (auto thing : leftTraj){
-        //std::cout << thing.accel << std::endl;
-    //}
-    
+    for (auto thing : leftTraj){
+        //std::cout << thing.vel << std::endl;
+    }
 
-    //auto thing2 = Math::cubicSolver2((8.0/6), -1.15, 0.330625, -0.03);
-    //auto thing3 = cubicRoots2({ , ,3});
-    //std::cout << Math::findSmallestRoot(thing2);
-    //std::cout << thing2.root1.value() << "root1 " << thing2.root2.value() << " root2 " << thing2.root3.value() << " root3 \n";
-    //std::cout << "hi";
-   //scurve.generateVelocityLimits(bezier.getLength());
+    
+    scurveProfile scurve (constraints);
+    CubicBezier bezier({0, 0, 0}, {2, 0, 0});
+    //scurve.generateProfileWithoutVector(bezier.getLength());
+    scurve.generateProfile(bezier.getLength());
+    for (auto& thing : scurve.pathTrajectory){
+        //std::cout << thing.position << std::endl;
+    }
+    //std::cout << "\n\n\n\n\n\n";
+    for (double i = 0; i < scurve.pathTrajectory.back().position; i += 0.01){
+        std::cout << scurve.calculateTrajectoryFromDistance(i).time << std::endl;
+        
+    }
 }
