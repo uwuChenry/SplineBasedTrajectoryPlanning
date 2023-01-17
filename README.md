@@ -1,6 +1,7 @@
 # mp-cpp-test2
 
+Clean Version of MP
 
-ok so basically this versoin works
+no documentation cuz im lazy
 
-the updates that im making will be on the seperate test branch
+basically generates trajectories from bezier curve
