@@ -24,7 +24,6 @@ class Math{
     static constexpr double pi = 3.1415926535897932384626433;
     
     static cubicRoots cubicSolver(double a, double b, double c, double d);
-
     static quadraticRoots quadraticSolver(double a, double b, double c);
     static double findSmallestRoot(cubicRoots in);
     static double findSmallestRoot(quadraticRoots in);

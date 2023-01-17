@@ -8,10 +8,11 @@ double inverseKinematics::toLeftWheelSpeeds(double linearSpeed, double angularVe
     return (linearSpeed - trackWidth / 2 * angularVelocity);
 }
 
+
 double inverseKinematics::toRightWheelSpeeds2(double linearSpeed, double curvature){
     return linearSpeed * (2 + curvature * trackWidth) / 2;
 }
+
 double inverseKinematics::toLeftWheelSpeeds2(double linearSpeed, double curvature){
     return linearSpeed * (2 - curvature * trackWidth) / 2;
 }
-

@@ -9,7 +9,6 @@
 #include "structs.hpp"
 #include "trajectoryGen.hpp"
 #include "vector2D.hpp"
-#include "scurve.hpp"
 #include <vector>
 #include <optional>
 #include <iostream>

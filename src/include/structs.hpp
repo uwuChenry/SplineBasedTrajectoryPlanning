@@ -32,12 +32,6 @@ struct VelocityLimit{
 };
 
 
-/*
-struct PointWithCurvature{
-    Point2D point;
-    double curvature;
-};
-*/
 struct InterpolatingVelWithCurvature{
     wpi::InterpolatingMap<double, double> vel;
     wpi::InterpolatingMap<double, double> curvature;    

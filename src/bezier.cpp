@@ -35,35 +35,7 @@ DescretePathWithCurvature CubicBezier::generatePathByStep(int step){
     }
     return out;
 }
-/*
-DescretePath CubicBezier::generatePathByLength(double length, int initDistStep, int traverseStep, bool end){
-    double totalDist = getLength(initDistStep);
-    double distPerSegment = totalDist / std::ceil(totalDist / length);
-    double traversed = 0;
-    DescretePath out;
-    out.setDistance(totalDist);
-    out.pushBack(getPoint(0));
-    double thing = 0;
 
-    for (double t = 0; t < traverseStep; t++){
-        traversed += getPoint(t / traverseStep).distanceTo(getPoint(t / traverseStep + 1.0/traverseStep));
-        if (traversed >= distPerSegment){
-            thing += traversed;
-            traversed = 0;
-            out.pushBack(getPoint(t / traverseStep));
-        }
-    }
-    if (out.back().distanceTo(getPoint(1)) < distPerSegment / 2){
-        out.popBack();
-    }
-    if (end){
-        out.pushBack(getPoint(1));
-    }   
-    out.setDeltaLength(thing/out.getSize());
-
-    return out;
-}
-*/
 
 DescretePathWithCurvature CubicBezier::generatePathByLengthWithCurvature(double length, int initDistStep, int traverseStep, bool end){
     double totalDist = getLength(initDistStep);
@@ -114,7 +86,7 @@ double CubicBezier::getCurvature(double t) const{
     Point2D v = getVelocity(t);
     Point2D a = getAcceleration(t);
     double vmag = v.getMagnitude();
-    double out =  (v.getX() * a.getY() - v.getY() * a.getX())/(vmag * vmag * vmag);
+    double out =  (v.getX() * a.getY() - v.getY() * a.getX()) / (vmag * vmag * vmag);
     
     if (std::isnan(out)) return 0;
     else return out;
