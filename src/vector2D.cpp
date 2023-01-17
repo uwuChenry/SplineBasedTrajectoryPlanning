@@ -1,8 +1,6 @@
 #include "include/vector2D.hpp"
 
 
-
-
 Point2D Vector2D::getSecondPoint(){
     return Point2D(x + mag * cos(angle * Math::pi / 180), y + mag * sin (angle * Math::pi / 180));
 }

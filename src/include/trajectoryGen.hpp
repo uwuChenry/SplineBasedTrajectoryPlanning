@@ -7,7 +7,7 @@
 #include <iostream>
 #include "vector2D.hpp"
 #include "bezier.hpp"
-#include "interpolatingMap2.hpp"
+
 
 
 
@@ -15,32 +15,19 @@
 class TrajectoryGeneration{
     double maxVel, maxAccel, maxJerk;
     double trackWidth;
-    double finalTime;  
+    double finalTime; 
 
-    DescretePath path;
     std::vector<Trajectory> trajProfile;
-    std::vector<std::pair<Trajectory, Trajectory>> generatedPath;
-
+   
     public:
 
     TrajectoryGeneration(KinematicConstraints constraints, double trackWidth);
 
-    wpi::InterpolatingMap<double, double> generateTrajectory(Vector2D istart, Vector2D iend);
-    InterpolatingVelWithCurvature generateTrajectory2(Vector2D istart, Vector2D iend);
-    InterpolatingTrajectoryPoint generateTrajectory3(Vector2D istart, Vector2D iend);
+    InterpolatingVelWithCurvature generateTrajectory(Vector2D istart, Vector2D iend);
 
     double getFinalTime();
 
-    void imposeLimits(DescretePath& path);
-
-    void imposeLimits2(DescretePath &path);
-
-    void imposeLimits3(DescretePathWithCurvature &path);
-
-    
-    
-    std::vector<std::pair<Trajectory, Trajectory>> calculateFinalTrajectoryProfile();
-
-
+    void imposeLimits(DescretePathWithCurvature &path);
+    void imposeLimitsPositionVel(std::vector<VelocityLimit> ilimits, DescretePathWithCurvature &path);
 
 };

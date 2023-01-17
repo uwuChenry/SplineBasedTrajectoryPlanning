@@ -16,7 +16,6 @@ class CubicBezier
     
 
     public:
-    //double length = 0;
     CubicBezier(Point2D start, Point2D control1, Point2D control2, Point2D end):
     p1(start),c1(control1),c2(control2),p2(end){};
     
@@ -35,8 +34,7 @@ class CubicBezier
     double getLength(int step = 250);
     double getCurvature(double t) const;
 
-    DescretePath generatePathByStep (int step = 500);
-    DescretePath generatePathByLength (double length, int initDistStep = 250, int traverseStep = 2000, bool end = true);
+    DescretePathWithCurvature generatePathByStep (int step = 500);
     DescretePathWithCurvature generatePathByLengthWithCurvature(double length, int initDistStep = 250, int traverseStep = 2000, bool end = true);
 
     Point2D getPoint(double t) const;

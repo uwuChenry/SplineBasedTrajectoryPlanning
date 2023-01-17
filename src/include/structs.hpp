@@ -2,6 +2,8 @@
 #include "descretePath.hpp"
 #include "interpolatingMap.hpp"
 
+
+
 //vel accel pos time
 struct Trajectory{
     double vel;
@@ -25,10 +27,10 @@ struct TrajectoryPoint{
     double curvature;
 };
 
-struct PointWithCurvature{
-    Point2D point;
-    double curvature;
+struct VelocityLimit{
+    double dStart,  dEnd,  velocity;
 };
+
 
 struct InterpolatingVelWithCurvature{
     wpi::InterpolatingMap<double, double> vel;
