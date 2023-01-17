@@ -10,8 +10,6 @@
 class scurveProfile{
     private:
 
-    //KinematicConstraints constraints;
-
     double vMax = 1.5; //1.5
     double aMax = 2.5; //2.3
     double jerk = 15;  //5
@@ -23,21 +21,16 @@ class scurveProfile{
     //peak accel
     double aPeak;
 
-    //void generateTime(double idistance);
     Trajectory calculateTrajectory(double time);
     
-    //Trajectory calculateTrajectorySimple(double time);
-    //void calculateTrajectoryLinear2(double distance, bool isReversed);
+    
     public:
     void setConstraints(KinematicConstraints iconstraints);
     void setConstraints(double imaxVel, double imaxAccel, double imaxJerk);
     void generateProfile(double idistance);
     void generateProfileWithoutVector(double idistance);
     Trajectory calculateTrajectoryFromDistance(double distance);
-    //void generateProfileSimple(double idistance);
  
-    std::vector<VelocityLimit> generateVelocityLimits(double idistance);
-    //scurveProfile() = default;
     scurveProfile (KinematicConstraints iconstraints)
         : vMax(iconstraints.maxVel)
         , aMax(iconstraints.maxAccel)

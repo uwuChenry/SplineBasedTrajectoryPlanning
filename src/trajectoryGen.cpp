@@ -104,8 +104,6 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory2(Vector2D
     scurveProfile scurve ({maxVel, maxAccel, maxJerk});
 
     imposeLimits2(path, scurve, bezier);
-    //imposeLimitsPositionVel({{1.0, 1.2, 1.0}, {1.5, 1.9, 0.3}}, path);
-    //imposeLimitsPositionVel(scurve.generateVelocityLimits(bezier.getLength(1000)), path);
     trajProfile[0].vel = 0;
     trajProfile.back().vel = 0;
     trajProfile[0].time = 0;

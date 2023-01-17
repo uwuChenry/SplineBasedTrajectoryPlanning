@@ -16,7 +16,6 @@ class CubicBezier
     
 
     public:
-    //double length = 0;
     CubicBezier(Point2D start, Point2D control1, Point2D control2, Point2D end):
     p1(start),c1(control1),c2(control2),p2(end){};
     

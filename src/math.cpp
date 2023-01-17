@@ -58,6 +58,8 @@ double Math::findSmallestRoot(quadraticRoots in){
 
 cubicRoots Math::cubicSolver(double a, double b, double c, double d){
     cubicRoots out;
+    double disc, q, r, dum1, s, t, term1, r13;
+
     if (a == 0){
         std::cout << "this a quadratic bro";
         return {};
@@ -69,12 +71,13 @@ cubicRoots Math::cubicSolver(double a, double b, double c, double d){
     b /=a;
     c /=a;
     d /=a;
-    double disc, q, r, dum1, s, t, term1, r13;
+ 
     q = (3.0*c - (b*b))/9.0;
     r = -(27.0*d) + b*(9.0*c - 2.0*(b*b));
     r /= 54.0;
     disc = q*q*q + r*r;
     term1 = (b/3.0);
+
     if (disc > 0) { // one root real, two are complex
         s = r + sqrt(disc);
         s = ((s < 0) ? -std::pow(-s, (1.0/3.0)) : std::pow(s, (1.0/3.0)));
@@ -85,16 +88,15 @@ cubicRoots Math::cubicSolver(double a, double b, double c, double d){
         term1 = sqrt(3.0)*(-t + s)/2;
         return out;
     } 
-    // End if (disc > 0)
+
     // The remaining options are all real
     if (disc == 0){ // All roots real, at least two are equal.
         r13 = ((r < 0) ? -std::pow(-r,(1.0/3.0)) : std::pow(r,(1.0/3.0)));
-        //dataForm.x1Re.value = -term1 + 2.0*r13;
         out.root1 = -term1 + 2.0 * r13;
         out.root2 = -(r13 + term1);
-        //dataForm.x3Re.value = dataForm.x2Re.value = -(r13 + term1);
         return out;
-    } // End if (disc == 0)
+    } 
+
     // Only option left is that all roots are real and unequal (to get here, q < 0)
     q = -q;
     dum1 = q*q*q;
@@ -105,8 +107,6 @@ cubicRoots Math::cubicSolver(double a, double b, double c, double d){
     out.root3 = -term1 + r13 * cos((dum1 + 4.0 * Math::pi)/3);
     return out;
 }
-
-
 
 double Math::getSmallestRootEquation(double a, double b, double c, double d){
     return findSmallestRoot(cubicSolver(a, b, c, d));

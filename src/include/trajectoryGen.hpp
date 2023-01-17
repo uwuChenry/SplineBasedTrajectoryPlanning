@@ -17,27 +17,29 @@ class TrajectoryGeneration{
     double maxVel, maxAccel, maxJerk;
     double trackWidth;
     double finalTime; 
-    //scurveProfile scurve; 
 
     std::vector<Trajectory> trajProfile;
-    //std::vector<std::pair<Trajectory, Trajectory>> generatedPath;
 
     public:
 
     TrajectoryGeneration(KinematicConstraints constraints, double trackWidth);
 
+
+    //trapezoidal
     InterpolatingVelWithCurvature generateTrajectory(Vector2D istart, Vector2D iend);
+
+    //scurve
     InterpolatingVelWithCurvature generateTrajectory2(Vector2D istart, Vector2D iend);
 
     double getFinalTime();
 
+    //trapezoidal
     void imposeLimits(DescretePathWithCurvature &path);
+
+    //scurve
     void imposeLimits2(DescretePathWithCurvature &path, scurveProfile &scurve, CubicBezier &bezier);
+
+    //custom pos vel limit
     void imposeLimitsPositionVel(std::vector<VelocityLimit> ilimits, DescretePathWithCurvature &path);
-
-    
-    //std::vector<std::pair<Trajectory, Trajectory>> calculateFinalTrajectoryProfile();
-
-
 
 };

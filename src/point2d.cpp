@@ -59,7 +59,7 @@ Point2D Point2D::operator+(const Point2D &rhs){
 
 
 Point2D Point2D::operator-(const Point2D &rhs){
-    return Point2D(x + rhs.x, y + rhs.y);
+    return Point2D(x - rhs.x, y - rhs.y);
 }
 
 
