@@ -35,7 +35,7 @@ void TrajectoryGeneration::imposeLimits2(DescretePathWithCurvature &path, scurve
         placeholder.position = i * path.getDeltaLength();
         double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + fabs(path.getCurvature(i)) * trackWidth), maxVel);
         //maxAllowableVel = std::min(maxAllowableVel, scurve.calculateTrajectoryFromDistance(i * path.getDeltaLength()).vel);
-        //std::cout << maxAllowableVel << " maxalow, " << scurve.calculateTrajectoryFromDistance(i * path.getDeltaLength()).vel << " scurve \n";
+        std::cout << i * path.getDeltaLength() << " length, " << scurve.calculateTrajectoryFromDistance(i * path.getDeltaLength()).position << " scurve \n";
 
         placeholder.vel = maxAllowableVel;
         trajProfile.push_back(placeholder);
@@ -143,8 +143,3 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory2(Vector2D
 
     return {outVel, outCurvature};
 }
-
-
-
-
-

@@ -54,11 +54,11 @@ int main(){
     //scurve.generateProfileWithoutVector(bezier.getLength());
     scurve.generateProfile(bezier.getLength());
     for (auto& thing : scurve.pathTrajectory){
-        //std::cout << thing.position << std::endl;
+        //std::cout << thing.vel << std::endl;
     }
     //std::cout << "\n\n\n\n\n\n";
-    for (double i = 0; i < scurve.pathTrajectory.back().position; i += 0.01){
-        std::cout << scurve.calculateTrajectoryFromDistance(i).time << std::endl;
+    for (double i = 0; i <= bezier.getLength(); i += 0.01){
+        //std::cout << scurve.calculateTrajectoryFromDistance(i).vel << std::endl;
         
     }
 }
