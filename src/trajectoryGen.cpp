@@ -30,13 +30,13 @@ void TrajectoryGeneration::imposeLimits(DescretePathWithCurvature &path){
 //with scurve
 void TrajectoryGeneration::imposeLimits2(DescretePathWithCurvature &path, scurveProfile &scurve, CubicBezier &bezier){
     scurve.generateProfileWithoutVector((path.getSize()) * path.getDeltaLength());
-    for (int i = 0; i < path.getSize(); i++){
+    for (int i = 0; i <= path.getSize(); i++){
         Trajectory placeholder;
         placeholder.position = i * path.getDeltaLength();
         double maxAllowableVel = std::min(2.0 * maxVel / (2.0 + fabs(path.getCurvature(i)) * trackWidth), maxVel);
-        //maxAllowableVel = std::min(maxAllowableVel, scurve.calculateTrajectoryFromDistance(i * path.getDeltaLength()).vel);
-        std::cout << i * path.getDeltaLength() << " length, " << scurve.calculateTrajectoryFromDistance(i * path.getDeltaLength()).position << " scurve \n";
-
+        maxAllowableVel = std::min(maxAllowableVel, scurve.calculateTrajectoryFromDistance(i * path.getDeltaLength()).vel);
+        //std::cout << i * path.getDeltaLength() << " length, " << scurve.calculateTrajectoryFromDistance(i * path.getDeltaLength()).position << " scurve \n";
+        //std::cout << maxAllowableVel << "\n";
         placeholder.vel = maxAllowableVel;
         trajProfile.push_back(placeholder);
     }
@@ -104,7 +104,7 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory2(Vector2D
     scurveProfile scurve ({maxVel, maxAccel, maxJerk});
 
     imposeLimits2(path, scurve, bezier);
-    imposeLimitsPositionVel({{1.0, 1.2, 1.0}, {1.5, 1.9, 0.3}}, path);
+    //imposeLimitsPositionVel({{1.0, 1.2, 1.0}, {1.5, 1.9, 0.3}}, path);
     //imposeLimitsPositionVel(scurve.generateVelocityLimits(bezier.getLength(1000)), path);
     trajProfile[0].vel = 0;
     trajProfile.back().vel = 0;

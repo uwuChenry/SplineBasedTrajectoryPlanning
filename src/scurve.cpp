@@ -104,7 +104,7 @@ void scurveProfile::generateProfileWithoutVector(double idistance){
     if (x < (aMax * 2 / jerk) && x >= 0) isP4 = true;
     
     if (tc > 0){ //7 phase
-        std::cout << "7 phase" << std::endl;
+        //std::cout << "7 phase" << std::endl;
         timePhase[0] = taa;
         timePhase[1] = taa + ta;
         timePhase[2] = totalAccelTime;
@@ -129,7 +129,7 @@ void scurveProfile::generateProfileWithoutVector(double idistance){
             ta6 = root2;
         }
 
-        std::cout << "6 phase" << std::endl;
+        //std::cout << "6 phase" << std::endl;
         timePhase[0] = taa;
         timePhase[1] = ta6 + taa;
         timePhase[2] = taa + taa + ta6;
@@ -141,7 +141,7 @@ void scurveProfile::generateProfileWithoutVector(double idistance){
 
     if (tc <= 0 && isP4 == true){ //4 phase
         double taa4 = cbrt((distance / 2) / jerk);
-        std::cout << "4 Phase" << std::endl;
+        //std::cout << "4 Phase" << std::endl;
         timePhase[0] = taa4;
         timePhase[1] = taa4;
         timePhase[2] = 2 * taa4;
@@ -201,7 +201,7 @@ void scurveProfile::generateProfile(double idistance){
     if (x < (aMax * 2 / jerk) && x >= 0) isP4 = true;
     
     if (tc > 0){ //7 phase
-        std::cout << "7 phase" << std::endl;
+        //std::cout << "7 phase" << std::endl;
         timePhase[0] = taa;
         timePhase[1] = taa + ta;
         timePhase[2] = totalAccelTime;
@@ -226,7 +226,7 @@ void scurveProfile::generateProfile(double idistance){
             ta6 = root2;
         }
 
-        std::cout << "6 phase" << std::endl;
+        //std::cout << "6 phase" << std::endl;
         timePhase[0] = taa;
         timePhase[1] = ta6 + taa;
         timePhase[2] = taa + taa + ta6;
@@ -238,7 +238,7 @@ void scurveProfile::generateProfile(double idistance){
 
     if (tc <= 0 && isP4 == true){ //4 phase
         double taa4 = cbrt((distance / 2) / jerk);
-        std::cout << "4 Phase" << std::endl;
+        //std::cout << "4 Phase" << std::endl;
         timePhase[0] = taa4;
         timePhase[1] = taa4;
         timePhase[2] = 2 * taa4;
@@ -278,7 +278,7 @@ void scurveProfile::generateProfile(double idistance){
     fPosPhase[5] = fPosPhase[4] + fVelPhase[4] * fTimePhase[5] - aPeak * fTimePhase[5] * fTimePhase[5] / 2;
     fPosPhase[6] = fPosPhase[5] + fVelPhase[5] * fTimePhase[6] - aPeak * fTimePhase[6] * fTimePhase[6] / 2 + jerk * fTimePhase[6] * fTimePhase[6] * fTimePhase[6] / 6;
 
-     std::cout << timePhase[0] << " 0, " << timePhase[1] << " 1, " << timePhase[2] << " 2\n";
+    //std::cout << timePhase[0] << " 0, " << timePhase[1] << " 1, " << timePhase[2] << " 2\n";
     int stepAmount = timePhase[6] * 100;
     for (int i = 0; i < stepAmount; i++){
         double currentTime = i * 10;

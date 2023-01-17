@@ -8,11 +8,11 @@ int main(){
     KinematicConstraints constraints(1.45, 2.55, 6);
     inverseKinematics kinematics (0.3048);
     TrajectoryGeneration generator(constraints, 0.3048);
-    auto thing = generator.generateTrajectory2({0, 0, 0}, {2,0,0});
+    auto thing = generator.generateTrajectory2({0, 0, 0}, {2,2,0});
 
     for (double i = 0; i < generator.getFinalTime(); i+= 0.01){
         double vel = thing.vel[i];
-        //std::cout << vel << std::endl;
+        std::cout << vel << std::endl;
         double curv = thing.curvature[i];
         Trajectory leftPlaceholder;
         leftPlaceholder.vel = kinematics.toLeftWheelSpeeds2(vel, curv);
@@ -52,11 +52,13 @@ int main(){
     scurveProfile scurve (constraints);
     CubicBezier bezier({0, 0, 0}, {2, 0, 0});
     //scurve.generateProfileWithoutVector(bezier.getLength());
+    std::cout << "hi \n";
     scurve.generateProfile(bezier.getLength());
     for (auto& thing : scurve.pathTrajectory){
         //std::cout << thing.vel << std::endl;
     }
     //std::cout << "\n\n\n\n\n\n";
+    //std::cout << "a";
     for (double i = 0; i <= bezier.getLength(); i += 0.01){
         //std::cout << scurve.calculateTrajectoryFromDistance(i).vel << std::endl;
         
