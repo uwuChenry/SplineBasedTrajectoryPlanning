@@ -1,10 +1,10 @@
 #include "include/main.h"
-#include "bits/stdc++.h"
-
+#include <iostream>
 
 int main(){   
     std::vector<Trajectory> leftTraj;
     std::vector<Trajectory> rightTraj;
+
     KinematicConstraints constraints(1.45, 2.55, 6);
     inverseKinematics kinematics (0.3048);
     TrajectoryGeneration generator(constraints, 0.3048);
@@ -43,4 +43,23 @@ int main(){
     leftTraj.pop_back();
     rightTraj.pop_back();
 
+
+
+
+
+
+    // CubicBezier bezier ({0, 0},{0, 1},{0,2},{1,2});
+    CubicBezier bezier ({0, 0, 90, 2}, {1.5,1, -90});
+    DescretePathWithCurvature path = bezier.generatePathByLengthWithCurvature(0.01, 2000);
+    for (int i = 0; i < path.getSize(); i++)
+    {
+        std::cout << path.path[i].getX() << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    for (int i = 0; i < path.getSize(); i++)
+    {
+        std::cout << path.path[i].getY() << std::endl;
+    }
 }

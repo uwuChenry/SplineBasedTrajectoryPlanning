@@ -79,3 +79,4 @@ InterpolatingVelWithCurvature TrajectoryGeneration::generateTrajectory(Vector2D 
     return {outVel, outCurvature};
 }
 
+    
