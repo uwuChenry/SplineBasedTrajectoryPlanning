@@ -52,6 +52,14 @@ double Point2D::angleBetween(Point2D a, Point2D b){
     return atan2(c.y, c.x);
 }
 
+double Point2D::dot(Point2D a, Point2D b){
+    return (a.x * b.x + a.y * b.y);
+}
+
+double Point2D::dot(Point2D b){
+    return dot(*this, b);
+}
+
 
 Point2D Point2D::operator+(const Point2D &rhs){
     return Point2D(x + rhs.x, y + rhs.y);

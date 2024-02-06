@@ -1,6 +1,6 @@
 #include "include/main.h"
 #include <iostream>
-
+#include <optional>
 
 int closestPointIndex(Point2D point, std::vector<Point2D>& path){
         double smallestDist = 1.79769e+308;
@@ -15,6 +15,36 @@ int closestPointIndex(Point2D point, std::vector<Point2D>& path){
     return a;
 }
 
+Point2D circleLineIntersection(Point2D start, Point2D end, Point2D point, double radius){
+    Point2D d = end - start;
+    Point2D f = start - point;
+
+    auto a = d.dot(d);
+    auto b = 2 * (f.dot(d));
+    auto c = f.dot(f) - radius * radius;
+    auto discriminant = b * b - 4 * a * c; 
+
+    double multiplier;
+    bool exist = false;
+    if(discriminant >= 0){
+        const auto dis = sqrt(discriminant);
+        const double t1 = ((-1 * b - dis) / (2 * a));
+        const double t2 = ((-1 * b + dis) / (2 * a));
+
+        if(t2 >= 0 && t2 <= 1){
+            multiplier = t2;
+            exist = true;
+        }
+        else if(t1 >= 0 && t1 <= 1){
+            multiplier = t1;
+            exist = true;
+        }   
+    }
+    if (exist){
+        return start + d * multiplier;
+    }
+    return {10000, 10000};
+}
 
 
 int main(){   
@@ -79,8 +109,12 @@ int main(){
     //     std::cout << path.path[i].getY() << std::endl;
     // }
 
-    Point2D start (1, 1);
-    std::vector<Point2D> points = {{0.0, 0.0}, {1.2, 1.2}, {2,2}, {1.1, 1.1}, {1.05, 1.05}};
+    // Point2D start (1, 1);
+    // std::vector<Point2D> points = {{0.0, 0.0}, {1.2, 1.2}, {2,2}, {1.1, 1.1}, {1.05, 1.05}};
 
-    std::cout << closestPointIndex(start, points) << std::endl;
+    // std::cout << closestPointIndex(start, points) << std::endl;
+
+    Point2D thing = circleLineIntersection({0, 1}, {0, 3}, {0, 0}, 4);
+    std::cout << thing.x << ", " << thing.y << std::endl;
+    
 }
